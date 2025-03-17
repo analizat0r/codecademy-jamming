@@ -18,7 +18,7 @@ export default function PlayList() {
             <form onSubmit={handleSubmit}>
                 <input type="text" name="playlistName" id="playlistName" value={playListName} onChange={handleChange}></input>
                 <TrackList /> 
-                <button type="submit"></button>
+                <button type="submit">Save Playlist</button>
             </form>
             
         </div>
