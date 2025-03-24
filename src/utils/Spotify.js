@@ -25,7 +25,7 @@ const Spotify = {
     async searchSpotify(userInput) {
         const accessToken = Spotify.getAccessToken();
         const endpoint = "search?";
-        let searchParams = `q=${userInput}&type=album%2Cartist%2Ctrack`;
+        let searchParams = `q=${userInput}&type=track`;
         const url = baseUrl+endpoint+searchParams;
 
         const headers = {
@@ -40,7 +40,13 @@ const Spotify = {
             });
             if (response.ok) {
                 const jsonResponse = await response.json();
-                console.log(jsonResponse);
+                return jsonResponse.tracks.items.map((track) => ({
+                    id: track.id,
+                    album: track.album.name,
+                    artist: track.artists[0].name,
+                    track: track.name,
+                    uri: track.uri
+                }))
                 
             }
         } catch (error) {

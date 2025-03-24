@@ -18,8 +18,7 @@ function App() {
     <>
       <h1>Jamming project</h1>
       <Search onSearch={search} />
-      <SearchResults />
-      <TrackList />
+      <SearchResults searchResults={searchResult}/>
       <PlayList />
     </>
   );
