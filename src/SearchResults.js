@@ -1,11 +1,11 @@
 import React from "react";
 import TrackList from "./TrackList";
 
-export default function SearchResults() {
+export default function SearchResults( {searchResults = []} ) {
     return (
         <>
             <h1>Results</h1>
-            <TrackList /> 
+            <TrackList searchResults={searchResults}/> 
         </>
     );
 };
