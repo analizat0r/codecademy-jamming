@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Spotify from "./utils/Spotify";
 
-export default function Search() {
+export default function Search({ onSearch }) {
     const [searchValue, setSearchValue] = useState("");
 
     const handleChange = (event) => {
@@ -11,7 +10,7 @@ export default function Search() {
     function handleSubmit(event){
         event.preventDefault();
         const formatedInput = searchValue.trim().split(" ").join("+");
-        Spotify.searchSpotify(formatedInput);
+        onSearch(formatedInput);
     };
 
     return (
