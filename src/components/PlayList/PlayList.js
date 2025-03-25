@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TrackList from "./TrackList";
+import TrackList from "../TrackList/TrackList";
 
 export default function PlayList() {
     const [playListName, setPlayListName] = useState('');

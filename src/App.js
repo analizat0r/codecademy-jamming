@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import PlayList from './PlayList';
-import Search from './Search';
-import SearchResults from './SearchResults';
-import TrackList from './TrackList';
+import PlayList from './components/PlayList/PlayList';
+import Search from './components/Search/Search';
+import SearchResults from './components/SearchResults/SearchResults';
 import Spotify from './utils/Spotify'
 
 function App() {
