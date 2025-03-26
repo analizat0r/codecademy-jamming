@@ -4,11 +4,21 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid #7A28CB;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: #7FFFD4;
+    color: #494368;
 }
 
 .title {
     font-family: Silkscreen;
+}
+
+.paragraph {
+    font-family: Lato;
+}
+
+p {
+    margin-bottom: 10px;
 }

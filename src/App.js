@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import PlayList from './components/PlayList/PlayList';
 import Search from './components/Search/Search';
 import SearchResults from './components/SearchResults/SearchResults';
@@ -17,8 +17,10 @@ function App() {
     <>
       <h1>Jamming project</h1>
       <Search onSearch={search} />
-      <SearchResults searchResults={searchResult}/>
-      <PlayList />
+      <div className={styles.row}>
+        <SearchResults className={styles.column} searchResults={searchResult}/>
+        <PlayList className={styles.column} />
+      </div>
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import TrackList from "../TrackList/TrackList";
+import styles from "./PlayList.module.css";
+
 
 export default function PlayList() {
     const [playListName, setPlayListName] = useState('');
@@ -13,7 +15,7 @@ export default function PlayList() {
     };
 
     return (
-        <div>
+        <div className={styles.main}>
             <h2>Create a Playlist</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="playlistName" id="playlistName" value={playListName} onChange={handleChange}></input>
