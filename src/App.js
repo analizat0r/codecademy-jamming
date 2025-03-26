@@ -15,9 +15,11 @@ function App() {
   
   return (
     <>
-      <h1>Jamming project</h1>
-      <Search onSearch={search} />
-      <div className={styles.row}>
+      <div className={`${styles.row} ${styles.main} ${styles.directionColumn} ${styles.contentAligmmentCenter}`}>
+        <h1>Jamming project</h1>
+        <Search onSearch={search} />
+      </div>
+      <div className={`${styles.row} ${styles.main} ${styles.directionRow}`}>
         <SearchResults className={styles.column} searchResults={searchResult}/>
         <PlayList className={styles.column} />
       </div>

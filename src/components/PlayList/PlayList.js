@@ -22,7 +22,6 @@ export default function PlayList() {
                 <TrackList /> 
                 <button type="submit">Save Playlist</button>
             </form>
-            
         </div>
     );
 };

@@ -2,6 +2,27 @@
     display: flex;
 }
 
-.column {
-    flex: 50%;
+.directionColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.directionRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex: 1 1 100px;
+    margin: 50px;
+}
+
+.contentAligmmentStart {
+    align-items: flex-start;
+}
+
+.contentAligmmentCenter {
+    align-items: center;
 }

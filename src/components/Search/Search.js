@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./Search.module.css";
 
 export default function Search({ onSearch }) {
     const [searchValue, setSearchValue] = useState("");
@@ -14,8 +15,7 @@ export default function Search({ onSearch }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}> 
-            <label htmlFor="searchBar">Search</label>
+        <form className={styles.main} onSubmit={handleSubmit}> 
             <input type="text" id="searchBar" name="searchBar" value={searchValue} onChange={handleChange} placeholder="Search songs"></input>
             <button type="submit">Search</button>
         </form>
