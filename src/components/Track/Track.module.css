@@ -1,8 +1,7 @@
 .track {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 10px;
     border: 2px solid #7A28CB;
     border-radius: 5px;
@@ -21,4 +20,9 @@
 
 p {
     margin-bottom: 10px;
+}
+
+.addButton:hover {
+    color: white;
+    cursor: pointer;
 }

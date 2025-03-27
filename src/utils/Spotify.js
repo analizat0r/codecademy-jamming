@@ -52,6 +52,29 @@ const Spotify = {
         } catch (error) {
             console.log(error);
         }        
+    },
+
+    async getUserID(){
+        const accessToken = Spotify.getAccessToken();
+        const endpoint = "me";
+        const url = baseUrl+endpoint;
+        const headers = {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+        };
+        try {
+            const response = await fetch(url, { 
+                method: "GET", 
+                headers: headers 
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.id;
+            }
+        } catch (error) {
+            console.log(error);
+        } 
+
     }
 };
 
