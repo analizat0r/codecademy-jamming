@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./Track.module.css";
 import Spotify from "../../utils/Spotify"
 
-export default function Track({ trackDetails }) {
+export default function Track({ trackDetails, addTrack }) {
+  
   return (
     <div className={styles.track}>
       <div>
@@ -11,7 +12,7 @@ export default function Track({ trackDetails }) {
         <p className={styles.paragraph}>Album: <strong>{trackDetails.album}</strong></p>
       </div>
       <div>
-        <div onClick={Spotify.getUserID} className={styles.addButton}>+</div>
+        <div onClick={() => addTrack(trackDetails)} className={styles.addButton}>+</div>
       </div>
     </div>
     

@@ -7,10 +7,19 @@ import Spotify from './utils/Spotify'
 
 function App() {
   const [searchResult, setSearchResult] = useState([]);
+  const [playListItems, setPayListItems] = useState([]);
 
   const search = async (term) => {
     const results = await Spotify.searchSpotify(term);
     setSearchResult(results);
+  }
+
+  const addTrack = (track) => {
+    if (!playListItems.find(item => item.id === track.id)) {
+      setPayListItems((prev) => [...prev, track]);
+    } else {
+      alert("Can't add track to playlist");
+    }
   }
   
   return (
@@ -20,8 +29,8 @@ function App() {
         <Search onSearch={search} />
       </div>
       <div className={`${styles.row} ${styles.main} ${styles.directionRow}`}>
-        <SearchResults className={styles.column} searchResults={searchResult}/>
-        <PlayList className={styles.column} />
+        <SearchResults className={styles.column} searchResults={searchResult} addTrack={addTrack}/>
+        <PlayList className={styles.column} playListItems={playListItems}/>
       </div>
     </>
   );

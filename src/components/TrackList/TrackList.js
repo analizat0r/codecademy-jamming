@@ -1,11 +1,11 @@
 import React from "react";
 import Track from "../Track/Track";
 
-export default function TrackList({ searchResults =[] }) {
+export default function TrackList({ tracks = [], addTrack }) {
   return (
     <div>
-      {searchResults.map(track => (
-        <Track key={track.id} trackDetails={track} />
+      {tracks.map(track => (
+        <Track key={track.id} trackDetails={track} addTrack={addTrack}/>
       ))}
     </div>
   );

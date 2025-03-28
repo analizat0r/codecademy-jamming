@@ -2,13 +2,11 @@ import React from "react";
 import TrackList from "../TrackList/TrackList";
 import styles from "./SearchResults.module.css";
 
-export default function SearchResults( {searchResults = []} ) {
+export default function SearchResults({ searchResults, addTrack }) {
     return (
         <div className={styles.main}>
             <h1>Results</h1>
-            <TrackList searchResults={searchResults}/> 
+            <TrackList tracks={searchResults} addTrack={addTrack}/> 
         </div>
     );
 };
-
-// need to pass ADD TO Playlist button somehow to this component
