@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Track.module.css";
 import Spotify from "../../utils/Spotify"
 
-export default function Track({ trackDetails, addTrack }) {
+export default function Track({ trackDetails, addTrack, removeTrack, isInPlaylist}) {
   
   return (
     <div className={styles.track}>
@@ -12,7 +12,11 @@ export default function Track({ trackDetails, addTrack }) {
         <p className={styles.paragraph}>Album: <strong>{trackDetails.album}</strong></p>
       </div>
       <div>
-        <div onClick={() => addTrack(trackDetails)} className={styles.addButton}>+</div>
+        {isInPlaylist ? (
+          <div onClick={() => removeTrack(trackDetails)} className={styles.addButton}>-</div>
+        ) : (
+          <div onClick={() => addTrack(trackDetails)} className={styles.addButton}>+</div>
+        )}
       </div>
     </div>
     

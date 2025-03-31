@@ -21,6 +21,11 @@ function App() {
       alert("Can't add track to playlist");
     }
   }
+
+  const removeTrack = (track) => {
+    setPayListItems((prev) => prev.filter(item => item.id !== track.id));      
+  }
+  
   
   return (
     <>
@@ -29,8 +34,16 @@ function App() {
         <Search onSearch={search} />
       </div>
       <div className={`${styles.row} ${styles.main} ${styles.directionRow}`}>
-        <SearchResults className={styles.column} searchResults={searchResult} addTrack={addTrack}/>
-        <PlayList className={styles.column} playListItems={playListItems}/>
+        <SearchResults
+          className={styles.column}
+          searchResults={searchResult}
+          addTrack={addTrack}
+        />
+        <PlayList
+          className={styles.column}
+          playListItems={playListItems}
+          removeTrack={removeTrack}
+        />
       </div>
     </>
   );

@@ -6,8 +6,8 @@
     border: 2px solid #7A28CB;
     border-radius: 5px;
     margin-bottom: 10px;
-    background-color: #7FFFD4;
-    color: #494368;
+    background-color: #6D7275;
+    color: #0C120C;
 }
 
 .title {
@@ -20,6 +20,12 @@
 
 p {
     margin-bottom: 10px;
+}
+
+.addButton {
+    margin-right: 20px;
+    font-size: 16pt;
+    font-weight: 700;
 }
 
 .addButton:hover {

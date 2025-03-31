@@ -16,12 +16,12 @@ export default function PlayList({ playListItems }) {
 
     return (
         <div className={styles.main}>
-            <h2>Create a Playlist</h2>
+            <h2>CREATE A PLAYLIST</h2>
             <form onSubmit={handleSubmit}>
                 <input type="text" name="playlistName" id="playlistName" value={playListName} onChange={handleChange}></input>
                 <button type="submit">Save Playlist</button>
             </form>
-            <TrackList tracks={playListItems}/> 
+            <TrackList tracks={playListItems} isInPlaylist={true} /> 
         </div>
     );
 };
