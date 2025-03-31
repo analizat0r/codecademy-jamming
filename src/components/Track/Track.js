@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Track.module.css";
-import Spotify from "../../utils/Spotify"
 
 export default function Track({ trackDetails, addTrack, removeTrack, isInPlaylist}) {
   

@@ -6,7 +6,7 @@ export default function SearchResults({ searchResults, addTrack }) {
     return (
         <div className={styles.main}>
             <h1>RESULTS</h1>
-            <TrackList tracks={searchResults} addTrack={addTrack} isInPlaylist={true} /> 
+            <TrackList tracks={searchResults} addTrack={addTrack} isInPlaylist={false} /> 
         </div>
     );
 };

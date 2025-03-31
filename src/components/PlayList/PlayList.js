@@ -3,7 +3,7 @@ import TrackList from "../TrackList/TrackList";
 import styles from "./PlayList.module.css";
 
 
-export default function PlayList({ playListItems }) {
+export default function PlayList({ playListItems, removeTrack }) {
     const [playListName, setPlayListName] = useState('');
     
     function handleChange(event) {
@@ -21,7 +21,7 @@ export default function PlayList({ playListItems }) {
                 <input type="text" name="playlistName" id="playlistName" value={playListName} onChange={handleChange}></input>
                 <button type="submit">Save Playlist</button>
             </form>
-            <TrackList tracks={playListItems} isInPlaylist={true} /> 
+            <TrackList tracks={playListItems} isInPlaylist={true} removeTrack={removeTrack} /> 
         </div>
     );
 };
