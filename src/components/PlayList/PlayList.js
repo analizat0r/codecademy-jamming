@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TrackList from "../TrackList/TrackList";
 import styles from "./PlayList.module.css";
+import Spotify from "../../utils/Spotify"
 
 
 export default function PlayList({ playListItems, removeTrack }) {
@@ -10,8 +11,9 @@ export default function PlayList({ playListItems, removeTrack }) {
         setPlayListName(event.target.value);
     };
 
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault();
+        const results = await Spotify.createPlaylist(); //this returns playlist ID, which i need to store for later use. Also this function probably should be elsewhere.
     };
 
     return (
