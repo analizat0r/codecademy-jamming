@@ -75,7 +75,7 @@ const Spotify = {
             alert("Couldn't get user id " + error);
         } 
     },
-    async createPlaylist(){
+    async createPlaylist(playListName){
         const accessToken = Spotify.getAccessToken();
         const userID = await Spotify.getUserID();        
         const endpoint = `users/${userID}/playlists`;
@@ -84,10 +84,8 @@ const Spotify = {
             "Authorization": `Bearer ${accessToken}`,
             "Content-Type": "application/json"
         };
-        // "data" object is a used for test. Should be replaced with actual data
         const data = { 
-            "name": "test",
-            "description": "New test description",
+            "name": `${playListName}`,
             "public": false
         };
 
@@ -103,6 +101,35 @@ const Spotify = {
             }
         } catch (error) {
             alert("Couldn't save the playlist " + error);
+        }
+    },
+    async addToPlayList(playListName, tracks) {
+        const accessToken = Spotify.getAccessToken();
+        const playlistID = await Spotify.createPlaylist(playListName);
+        const endpoint = `/playlists/${playlistID}/tracks`;
+        const url = baseUrl + endpoint;
+        const headers = {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+        };
+        const data = {
+            "uris": [
+                `${tracks}`
+            ],
+            "position": 0
+        };
+        try {
+            const response = await fetch(url, { 
+                method: "POST", 
+                headers: headers,
+                body: JSON.stringify(data)
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.snapshot_id;
+            }
+        } catch (error) {
+            alert("Couldn't create a playlist " + error);
         }
     }
 };

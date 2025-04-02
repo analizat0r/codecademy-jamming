@@ -50,3 +50,8 @@ function App() {
 }
 
 export default App;
+
+
+// TO DO
+// Let user save playlist by capturing playlist name and the list of URIs and pasing them to the function addToPlaylist
+// no sure yet how to do this and from which component to do this. Probably from App.js
