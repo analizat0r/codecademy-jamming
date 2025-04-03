@@ -25,6 +25,11 @@ function App() {
   const removeTrack = (track) => {
     setPayListItems((prev) => prev.filter(item => item.id !== track.id));      
   }
+
+  // not sure if this is correct. I get error that playListName is not defined
+  const savePlayList = () => {
+    Spotify.addToPlayList(playListName, playListItems.uri) 
+  }
   
   
   return (
@@ -43,6 +48,7 @@ function App() {
           className={styles.column}
           playListItems={playListItems}
           removeTrack={removeTrack}
+          savePlayList={savePlayList}
         />
       </div>
     </>
@@ -53,5 +59,5 @@ export default App;
 
 
 // TO DO
-// Let user save playlist by capturing playlist name and the list of URIs and pasing them to the function addToPlaylist
-// no sure yet how to do this and from which component to do this. Probably from App.js
+// in playListItems i store objects
+// but to the addToPlaylist function i need to pass a comma separated list of uris

@@ -126,7 +126,7 @@ const Spotify = {
             });
             if (response.ok) {
                 const jsonResponse = await response.json();
-                return jsonResponse.snapshot_id;
+                console.log(jsonResponse.snapshot_id);
             }
         } catch (error) {
             alert("Couldn't create a playlist " + error);
