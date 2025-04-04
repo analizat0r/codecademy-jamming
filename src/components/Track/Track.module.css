@@ -6,16 +6,8 @@
     border: 2px solid #7A28CB;
     border-radius: 5px;
     margin-bottom: 10px;
-    background-color: #6D7275;
+    background-color: hsla(270, 94%, 13%, 0.8);
     color: #0C120C;
-}
-
-.title {
-    font-family: Silkscreen;
-}
-
-.paragraph {
-    font-family: Lato;
 }
 
 p {
@@ -26,9 +18,10 @@ p {
     margin-right: 20px;
     font-size: 16pt;
     font-weight: 700;
+    color: rgb(248, 230, 253);
 }
 
 .addButton:hover {
-    color: white;
+    color: #a32772;
     cursor: pointer;
 }

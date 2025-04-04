@@ -9,15 +9,19 @@ export default function PlayList({ playListItems, setPlayListName, playListName,
 
     async function handleSubmit(event){
         event.preventDefault();
-        savePlayList();
+        if (!playListName) {
+            alert("Enter playlist name")
+        } else {
+            savePlayList();
+        }
     };
 
     return (
         <div className={styles.main}>
             <h2>CREATE A PLAYLIST</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="playlistName" id="playlistName" value={playListName} onChange={handleChange}></input>
-                <button type="submit">Save Playlist</button>
+            <form onSubmit={handleSubmit} className={styles.form}>
+                <input type="text" name="playlistName" id="playlistName" placeholder="Enter playlist name" value={playListName} onChange={handleChange}></input>
+                <button type="submit">Save to Spotify</button>
             </form>
             <TrackList tracks={playListItems} isInPlaylist={true} removeTrack={removeTrack} /> 
         </div>
