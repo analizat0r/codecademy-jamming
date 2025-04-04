@@ -1,11 +1,7 @@
-import React, { useState } from "react";
 import TrackList from "../TrackList/TrackList";
 import styles from "./PlayList.module.css";
-import Spotify from "../../utils/Spotify"
 
-
-export default function PlayList({ playListItems, removeTrack, savePlayList }) {
-    const [playListName, setPlayListName] = useState('');
+export default function PlayList({ playListItems, setPlayListName, playListName, removeTrack, savePlayList }) {
     
     function handleChange(event) {
         setPlayListName(event.target.value);

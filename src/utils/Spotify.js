@@ -106,16 +106,14 @@ const Spotify = {
     async addToPlayList(playListName, tracks) {
         const accessToken = Spotify.getAccessToken();
         const playlistID = await Spotify.createPlaylist(playListName);
-        const endpoint = `/playlists/${playlistID}/tracks`;
+        const endpoint = `playlists/${playlistID}/tracks`;
         const url = baseUrl + endpoint;
         const headers = {
             "Authorization": `Bearer ${accessToken}`,
             "Content-Type": "application/json"
         };
         const data = {
-            "uris": [
-                `${tracks}`
-            ],
+            "uris": tracks,
             "position": 0
         };
         try {
@@ -126,7 +124,7 @@ const Spotify = {
             });
             if (response.ok) {
                 const jsonResponse = await response.json();
-                console.log(jsonResponse.snapshot_id);
+                return jsonResponse.snapshot_id;
             }
         } catch (error) {
             alert("Couldn't create a playlist " + error);
