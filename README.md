@@ -51,3 +51,13 @@ To use this project, you will need a **Spotify Developer Client ID**. You can ge
 
 ```bash
 npm install
+```
+
+### Run the app in development mode:
+Run the app in development mode:
+
+```bash
+npm start
+```
+The app will start on http://localhost:3000 by default.
+
