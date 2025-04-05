@@ -1,3 +1,6 @@
+const REDIRECT_URI = "http://localhost:3000";
+const CLIENT_ID = "2a44f8365b244bf69b81d7b1059d9993";
+
 const baseUrl = "https://api.spotify.com/v1/";
 let accessToken;
 
@@ -17,7 +20,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const authUrl = "https://accounts.spotify.com/authorize?response_type=token&client_id=2a44f8365b244bf69b81d7b1059d9993&redirect_uri=http://localhost:3000&scope=playlist-modify-public%20playlist-modify-private";
+            const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=playlist-modify-public%20playlist-modify-private`;
             window.location = authUrl;
         }
     },
