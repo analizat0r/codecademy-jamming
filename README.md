@@ -41,7 +41,7 @@ To use this project, you will need a **Spotify Developer Client ID**. You can ge
 
 ## Technologies Used
 
-- **React** 18.2.0 (assumed latest, please update if necessary)
+- **React** 19.0.0
 
 ---
 
