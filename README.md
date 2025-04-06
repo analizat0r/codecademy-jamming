@@ -7,7 +7,7 @@ The app demonstrates the use of:
 - State management and prop passing
 - API requests with the Spotify Web API
 
-![Jammming Demo](assets/demo.gif)
+![Jammming demo gif](./src/assets/demo.gif)
 
 ---
 
