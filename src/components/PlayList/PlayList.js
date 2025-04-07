@@ -1,7 +1,8 @@
 import TrackList from "../TrackList/TrackList";
 import styles from "./PlayList.module.css";
+import PlayListsList from "../PlayListsList/PlayListsList";
 
-export default function PlayList({ playListItems, setPlayListName, playListName, removeTrack, savePlayList }) {
+export default function PlayList({ playListItems, setPlayListName, playListName, removeTrack, savePlayList, playLists }) {
     
     function handleChange(event) {
         setPlayListName(event.target.value);
@@ -23,7 +24,8 @@ export default function PlayList({ playListItems, setPlayListName, playListName,
                 <input type="text" name="playlistName" id="playlistName" placeholder="Enter playlist name" value={playListName} onChange={handleChange}></input>
                 <button type="submit">Save to Spotify</button>
             </form>
-            <TrackList tracks={playListItems} isInPlaylist={true} removeTrack={removeTrack} /> 
+            <TrackList tracks={playListItems} isInPlaylist={true} removeTrack={removeTrack} />
+            <PlayListsList playLists={playLists} />
         </div>
     );
 };

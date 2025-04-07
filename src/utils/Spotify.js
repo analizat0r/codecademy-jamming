@@ -20,19 +20,18 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=playlist-modify-public%20playlist-modify-private`;
+            const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=playlist-modify-public%20playlist-modify-private%20playlist-read-private`;
             window.location = authUrl;
         }
     },
 
     async searchSpotify(userInput) {
-        const accessToken = Spotify.getAccessToken();
         const endpoint = "search?";
         let searchParams = `q=${userInput}&type=track`;
         const url = baseUrl+endpoint+searchParams;
 
         const headers = {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${this.getAccessToken()}`,
             "Content-Type": "application/json"
         }
 
@@ -58,11 +57,10 @@ const Spotify = {
     },
 
     async getUserID(){
-        const accessToken = Spotify.getAccessToken();
         const endpoint = "me";
         const url = baseUrl+endpoint;
         const headers = {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${this.getAccessToken()}`,
             "Content-Type": "application/json"
         };
         try {
@@ -79,12 +77,11 @@ const Spotify = {
         } 
     },
     async createPlaylist(playListName){
-        const accessToken = Spotify.getAccessToken();
         const userID = await Spotify.getUserID();        
         const endpoint = `users/${userID}/playlists`;
         const url = baseUrl + endpoint;
         const headers = {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${this.getAccessToken()}`,
             "Content-Type": "application/json"
         };
         const data = { 
@@ -107,12 +104,11 @@ const Spotify = {
         }
     },
     async addToPlayList(playListName, tracks) {
-        const accessToken = Spotify.getAccessToken();
         const playlistID = await Spotify.createPlaylist(playListName);
         const endpoint = `playlists/${playlistID}/tracks`;
         const url = baseUrl + endpoint;
         const headers = {
-            "Authorization": `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${this.getAccessToken()}`,
             "Content-Type": "application/json"
         };
         const data = {
@@ -132,6 +128,30 @@ const Spotify = {
         } catch (error) {
             alert("Couldn't create a playlist " + error);
         }
+    },
+
+    async getPlaylists() {
+        const userID = await Spotify.getUserID();        
+        const endpoint = `users/${userID}/playlists`;
+        const url = baseUrl + endpoint;
+        const headers = {
+            "Authorization": `Bearer ${this.getAccessToken()}`,
+            "Content-Type": "application/json"
+        };
+        try {
+            const response = await fetch(url, { 
+                method: "GET", 
+                headers: headers 
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.items.map((playlist) => ({
+                    name: playlist.name
+                }))
+            }
+        } catch (error) {
+            alert("Couldn't get list of playlists " + error);
+        } 
     }
 };
 

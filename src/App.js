@@ -9,10 +9,19 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [playListItems, setPayListItems] = useState([]);
   const [playListName, setPlayListName] = useState('');
+  const [playLists, setPlayLists] = useState([]);
 
   useEffect(() => {
     Spotify.getAccessToken();
   },[]);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const playlists = await Spotify.getPlaylists();
+      setPlayLists(playlists || []);
+    };
+    fetchPlaylists();
+  }, []);
 
   const search = async (term) => {
     const results = await Spotify.searchSpotify(term);
@@ -62,6 +71,7 @@ function App() {
           setPlayListName={setPlayListName}
           removeTrack={removeTrack}
           savePlayList={savePlayList}
+          playLists={playLists}
         />
       </div>
     </>
