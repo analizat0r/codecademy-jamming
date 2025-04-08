@@ -4,7 +4,7 @@ import styles from "./Search.module.css";
 export default function Search({ onSearch }) {
     const [searchValue, setSearchValue] = useState("");
 
-    const handleChange = (event) => {
+    const handleChange = (event) => {        
         setSearchValue(event.target.value);
     };
 

@@ -10,6 +10,8 @@ function App() {
   const [playListItems, setPayListItems] = useState([]);
   const [playListName, setPlayListName] = useState('');
   const [playLists, setPlayLists] = useState([]);
+  const [playListID, setPlayListID] = useState('');
+
 
   useEffect(() => {
     Spotify.getAccessToken();
@@ -51,6 +53,11 @@ function App() {
       alert("Failed to save the playlist");
     }
   }
+
+  const openPlaylist = async (playListID) => {
+    const playListSongs = await Spotify.openPlaylist(playListID);
+    setPayListItems(playListSongs);
+  }
   
   return (
     <>
@@ -60,18 +67,18 @@ function App() {
       </div>
       <div className={`${styles.row} ${styles.main} ${styles.directionRow}`}>
         <SearchResults
-          className={styles.column}
           searchResults={searchResult}
           addTrack={addTrack}
         />
         <PlayList
-          className={styles.column}
           playListItems={playListItems}
           playListName={playListName}
           setPlayListName={setPlayListName}
           removeTrack={removeTrack}
           savePlayList={savePlayList}
           playLists={playLists}
+          setPlayListID={setPlayListID}
+          openPlaylist={openPlaylist}
         />
       </div>
     </>

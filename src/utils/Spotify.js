@@ -56,7 +56,7 @@ const Spotify = {
         }        
     },
 
-    async getUserID(){
+    async getUserID(){    
         const endpoint = "me";
         const url = baseUrl+endpoint;
         const headers = {
@@ -146,12 +146,40 @@ const Spotify = {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 return jsonResponse.items.map((playlist) => ({
+                    id: playlist.id,
                     name: playlist.name
                 }))
             }
         } catch (error) {
             alert("Couldn't get list of playlists " + error);
         } 
+    },
+
+    async openPlaylist(playlist_id) {
+        const endpoint = `playlists/${playlist_id}/tracks`;
+        const url = baseUrl + endpoint;
+        const headers = {
+            "Authorization": `Bearer ${this.getAccessToken()}`,
+            "Content-Type": "application/json"
+        };
+        try {
+            const response = await fetch(url, { 
+                method: "GET", 
+                headers: headers 
+            });
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                return jsonResponse.items.map((item) => ({
+                    id: item.track.id,
+                    album: item.track.album.name,
+                    artist: item.track.artists[0].name,
+                    track: item.track.name,
+                    uri: item.track.uri
+                }));
+            }
+        } catch (error) {
+            alert("Couldn't get list of playlists " + error);
+        }
     }
 };
 
