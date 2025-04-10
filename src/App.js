@@ -15,8 +15,38 @@ function App() {
 
   useEffect(() => {
     Spotify.getAccessToken();
-  },[]);
+    Spotify.getUserID();
+  },[])
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const token = await Spotify.getAccessToken();
+  //       console.log(token);
+        
+  //       const userID = await Spotify.getUserID();
+  //       console.log(userID);
+        
+  //       const playlists = await Spotify.getPlaylists(); 
+  //       setPlayLists(playlists || []);
+  //     } catch (error) {
+  //       alert("Couldn't fetch data ", error);
+  //     }
+  //   }
+  //   fetchData();
+  // },[]);
+
+    // const getToken = async () => {
+    //   const token = await Spotify.getAccessToken();
+    //   return token;      
+    // }
+    // const getUserID = async
+    // const fetchPlaylists = async () => {
+    //   const playlists = await Spotify.getPlaylists();
+    //   setPlayLists(playlists || []);
+    // };
+    // getToken();
+  
   useEffect(() => {
     const fetchPlaylists = async () => {
       const playlists = await Spotify.getPlaylists();
@@ -45,7 +75,7 @@ function App() {
   const savePlayList = async () => {
     const uriList = playListItems.map(item => item.uri);
     const results = await Spotify.addToPlayList(playListName, uriList);
-    if (results) {
+    if (results && uriList) {
       alert("Playlist saved");
       setPayListItems([]);
       setPlayListName('');
