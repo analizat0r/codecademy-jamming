@@ -1,12 +1,11 @@
 import styles from "./PlayListsList.module.css"
 
-export default function PlayListsList({ playLists = [], setPlayListID, setPlayListName, openPlaylist }) {
+export default function PlayListsList({ playLists = [], setPlayListName, openPlaylist, setPListID }) {
 
     const handleClick = (event) => {
         const playlistID = event.currentTarget.dataset.id;
         const playlistName = event.currentTarget.dataset.name;
-
-        setPlayListID(playlistID);
+        setPListID(playlistID);
         setPlayListName(playlistName);
         openPlaylist(playlistID);
     }

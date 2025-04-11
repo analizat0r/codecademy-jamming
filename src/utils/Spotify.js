@@ -24,7 +24,6 @@ const Spotify = {
             const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=playlist-modify-public%20playlist-modify-private%20playlist-read-private`;
             window.location = authUrl;
         }
-        
     },
 
     async searchSpotify(userInput) {
@@ -63,7 +62,7 @@ const Spotify = {
             return userID;
         }  
         const endpoint = "me";
-        const url = baseUrl+endpoint;
+        const url = baseUrl + endpoint;
         const headers = {
             "Authorization": `Bearer ${Spotify.getAccessToken()}`,
             "Content-Type": "application/json"
@@ -75,15 +74,16 @@ const Spotify = {
             });
             if (response.ok) {
                 const jsonResponse = await response.json();
-                userID = jsonResponse.id
-                return userID;
-            }
+                userID = jsonResponse.id;                
+            } else {
+                const errorResponse = await response.json();
+                console.error("Error response:", errorResponse);
+              }
         } catch (error) {
             alert("Couldn't get user id " + error);
         } 
     },
-    async createPlaylist(playListName){
-        const userID = await Spotify.getUserID();        
+    async createPlaylist(playListName){        
         const endpoint = `users/${userID}/playlists`;
         const url = baseUrl + endpoint;
         const headers = {
@@ -109,9 +109,9 @@ const Spotify = {
             alert("Couldn't save the playlist " + error);
         }
     },
-    async addToPlayList(playListName, tracks) {
-        const playlistID = await Spotify.createPlaylist(playListName);
-        const endpoint = `playlists/${playlistID}/tracks`;
+    async addToPlayList(pListID, tracks) {
+        //const playlistID = await Spotify.createPlaylist(playListName);
+        const endpoint = `playlists/${pListID}/tracks`;
         const url = baseUrl + endpoint;
         const headers = {
             "Authorization": `Bearer ${Spotify.getAccessToken()}`,
@@ -137,13 +137,12 @@ const Spotify = {
     },
 
     async getPlaylists() {
-        //const userID = await Spotify.getUserID();        
-        const endpoint = `users/${Spotify.getUserID()}/playlists`;
+        const endpoint = `users/${userID}/playlists`;        
         const url = baseUrl + endpoint;
         const headers = {
             "Authorization": `Bearer ${Spotify.getAccessToken()}`,
             "Content-Type": "application/json"
-        };
+        };        
         try {
             const response = await fetch(url, { 
                 method: "GET", 
@@ -165,7 +164,7 @@ const Spotify = {
         const endpoint = `playlists/${playlist_id}/tracks`;
         const url = baseUrl + endpoint;
         const headers = {
-            "Authorization": `Bearer ${this.getAccessToken()}`,
+            "Authorization": `Bearer ${Spotify.getAccessToken()}`,
             "Content-Type": "application/json"
         };
         try {
