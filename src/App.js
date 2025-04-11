@@ -71,6 +71,8 @@ function App() {
   //   console.log(newArr);
   // };
 
+  //there is a bug now that all the items are readded to the playlist even though they are already in the playlist.
+
   
   return (
     <>
