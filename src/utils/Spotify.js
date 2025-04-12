@@ -110,7 +110,6 @@ const Spotify = {
         }
     },
     async addToPlayList(pListID, tracks) {
-        //const playlistID = await Spotify.createPlaylist(playListName);
         const endpoint = `playlists/${pListID}/tracks`;
         const url = baseUrl + endpoint;
         const headers = {

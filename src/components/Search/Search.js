@@ -10,8 +10,12 @@ export default function Search({ onSearch }) {
 
     function handleSubmit(event){
         event.preventDefault();
-        const formatedInput = searchValue.trim().split(" ").join("+");
-        onSearch(formatedInput);
+        if (searchValue) {
+            const formatedInput = searchValue.trim().split(" ").join("+");
+            onSearch(formatedInput);
+        } else {
+            alert("Please enter the track name");
+        }
     };
 
     return (

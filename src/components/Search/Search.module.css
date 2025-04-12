@@ -1,3 +1,6 @@
 .main {
     margin-top: 40px;
+    display: flex;           /* Enable Flexbox */
+    align-items: center;     /* Vertically align items in the center */
+    gap: 5px;     
 }

@@ -2,7 +2,7 @@ import TrackList from "../TrackList/TrackList";
 import styles from "./PlayList.module.css";
 import PlayListsList from "../PlayListsList/PlayListsList";
 
-export default function PlayList({ playListItems, setPlayListName, playListName, removeTrack, savePlayList, playLists, setPListID, openPlaylist }) {
+export default function PlayList({ playListItems, setPlayListName, setPayListItems, playListName, removeTrack, savePlayList, playLists, setPListID, openPlaylist }) {
     
     function handleChange(event) {
         setPlayListName(event.target.value);
@@ -17,6 +17,12 @@ export default function PlayList({ playListItems, setPlayListName, playListName,
         }
     };
 
+    function handleClear() {
+        setPlayListName('');
+        setPayListItems([]);
+        setPListID('');
+    }
+
     return (
         <div className={styles.main}>
             <h2>CREATE A PLAYLIST</h2>
@@ -24,6 +30,7 @@ export default function PlayList({ playListItems, setPlayListName, playListName,
                 <input type="text" name="playlistName" id="playlistName" placeholder="Enter playlist name" value={playListName} onChange={handleChange}></input>
                 <button type="submit">Save to Spotify</button>
             </form>
+            <button className={styles.linkBtn} onClick={handleClear}>Clear list</button>
             <TrackList tracks={playListItems} isInPlaylist={true} removeTrack={removeTrack} />
             <PlayListsList playLists={playLists} setPListID={setPListID} setPlayListName={setPlayListName} openPlaylist={openPlaylist} />
         </div>

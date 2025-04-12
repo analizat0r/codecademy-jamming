@@ -42,12 +42,25 @@ function App() {
   };
 
   const savePlayList = async () => {
-    const uriList = playListItems.map(item => item.uri); // need to filter all items from the opendPLitems playlist
+    let uriList;
+    
+    if (pListID) {
+      if (opendPLitems && opendPLitems.length > 0) {
+          uriList = playListItems
+              .filter(item => !opendPLitems.find(existingItem => existingItem.id === item.id))
+              .map(item => item.uri);
+        } else {
+          uriList = playListItems.map(item => item.uri);
+        } 
+    } else {
+      uriList = playListItems.map(item => item.uri);
+    } 
+
     let results;
     if (pListID) {
       results = await Spotify.addToPlayList(pListID, uriList);
     } else {
-      const playlistID = Spotify.createPlaylist(playListName);
+      const playlistID = await Spotify.createPlaylist(playListName);
       results = await Spotify.addToPlayList(playlistID, uriList);
     }
     if (results) {
@@ -65,14 +78,6 @@ function App() {
     setPayListItems(playListSongs);
     setOpenedPLitems(playListSongs);
   };
-
-  // const filterDuplicates = () => {
-  //   const newArr = playListItems.filter(item => !opendPLitems.includes(item));
-  //   console.log(newArr);
-  // };
-
-  //there is a bug now that all the items are readded to the playlist even though they are already in the playlist.
-
   
   return (
     <>
@@ -89,6 +94,7 @@ function App() {
           playListItems={playListItems}
           playListName={playListName}
           setPlayListName={setPlayListName}
+          setPayListItems={setPayListItems}
           removeTrack={removeTrack}
           savePlayList={savePlayList}
           playLists={playLists}
