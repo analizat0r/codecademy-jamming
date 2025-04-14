@@ -1,11 +1,12 @@
 const REDIRECT_URI = "http://localhost:3000";
-const CLIENT_ID = "2a44f8365b244bf69b81d7b1059d9993";
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 const baseUrl = "https://api.spotify.com/v1/";
 let accessToken;
 let userID;
 
 const Spotify = {
+    // Function to get the access token
     getAccessToken() {
         if (accessToken) {
             return accessToken;
@@ -25,7 +26,7 @@ const Spotify = {
             window.location = authUrl;
         }
     },
-
+    //Function to search for the track based on users' input
     async searchSpotify(userInput) {
         const endpoint = "search?";
         let searchParams = `q=${userInput}&type=track`;
@@ -56,7 +57,7 @@ const Spotify = {
             console.log(error);
         }        
     },
-
+    // Function to get userID which is used later to get users' playlists
     async getUserID(){  
         if (userID) {
             return userID;
@@ -83,6 +84,7 @@ const Spotify = {
             alert("Couldn't get user id " + error);
         } 
     },
+    // Function which creates new playlist and takes a playlist name as an input
     async createPlaylist(playListName){        
         const endpoint = `users/${userID}/playlists`;
         const url = baseUrl + endpoint;
@@ -109,6 +111,7 @@ const Spotify = {
             alert("Couldn't save the playlist " + error);
         }
     },
+    // Function which adds tracks to the specific playlist
     async addToPlayList(pListID, tracks) {
         const endpoint = `playlists/${pListID}/tracks`;
         const url = baseUrl + endpoint;
@@ -134,7 +137,7 @@ const Spotify = {
             alert("Couldn't create a playlist " + error);
         }
     },
-
+    // Function which gets users' playlist. Uses userID to fetch playlists
     async getPlaylists() {
         const endpoint = `users/${userID}/playlists`;        
         const url = baseUrl + endpoint;
@@ -158,7 +161,7 @@ const Spotify = {
             alert("Couldn't get list of playlists " + error);
         } 
     },
-
+    // Function to open specific playlist, by getting all tracks from the selected playlist. Takes playlistID as an argument
     async openPlaylist(playlist_id) {
         const endpoint = `playlists/${playlist_id}/tracks`;
         const url = baseUrl + endpoint;
